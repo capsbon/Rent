@@ -53,3 +53,48 @@ JSON['["games", "fun", "sports"]'] # => ["games", "fun", "sports"]
 
 array = array.uniq
 uniq method删除所有重复的元素，并保留数组中的所有唯一元素。
+
+vi下查找指定字符串
+在命令模式下输入 /
+
+py2neo中的OGM，类似于ORM，意为 Object Graph Mapping，可以实现一个对象和 Node 的关联
+利用ogm来生成节点间关系，需要先在出度类中定义比如
+ownedBy = RelatedTo("Project")
+然后通过自己定义的retrieveId()来获取点
+最后通过a.ownedBy.add(b)来生成关系
+上传到数据库graph.push(a)
+
+查询所有
+
+利用flask-sqlalchemy多条件查询语句：
+OriginalData.query.filter_by(data_type = data_type, original_id = original_id).first()
+
+os.path.relpath(path)
+返回真实路径，例如
+path=D:\FIAT1224\FIAT_Visual_API\fiat\myapi\..\orig_data\orig-00007
+os.path.relpath(path)后即变成
+D:\FIAT1224\FIAT_Visual_API\fiat\orig_data\orig-00007
+
+安装 flask-sqlalchemy==2.3.2库时出现unresolved reference SQLALCHEMY
+是因为导入包的问题已经由原来的from flask.ext.sqlalchemy import SQLAlchemy
+改为from flask_sqlalchemy import SQLAlchemy
+
+use fiat_data_db;使用fiat_data_db数据库
+show tables; 显示fiat_data_db中的所有表
+select * from original_data; 查询original_data中的所有数据
+drop table original_data; 删除original_data表
+desc original_data;  查看original_data表结构
+
+关于远程连接126上的mysql失败
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'10.167.223.152' (using password: YES)") (Background on this error at: http://sqlalche.me/e/e3q8)
+原因：是因为root账户只能在本地访问，无法远程连接
+解决：新建一个普通账户并把fiat_data_db的权限都赋给它，并且开启远程连接权限
+CREATE USER 'fnst'@'localhost' IDENTIFIED BY 'fnst';
+grant all on fiat_data_db.* to 'fnst'@'%' identified by 'fnst' with grant option
+
+格式化字符串可以采用%和.format两种方法
+print('%s is %d'%('wang',14))
+其中.format可以采用位置，关键字，下标作为参数
+print("{name} is {age} years old".format(name = "wang",age = 21))
+print("{0} is {1} years old".format("wang",21))
+print("{1[0]} is {1[1]} years old".format(["wang",21],["li",18]))
