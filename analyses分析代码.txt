@@ -227,33 +227,6 @@ f.write(binaryData)  #write binary data to file
 f.close
 上传过程中数次新建文件后写入不了，新文件为空，后修改为其他路径后即可，再改回来仍可，原因不明，可能是前期路径格式有误
 
-        resouceDir = os.path.join(baseDir, "../" + buildConfig.resouceDir)
-        resouceDir = os.path.join(resouceDir, targetName, serverName)
-        #try:
-        resourceFile = os.listdir(resouceDir)
-        jsonCreateTimeList = []
-        beginTimeCheck = datetime.strptime(beginTimeStr, "%Y-%m-%d %H:%M:%S")
-        endTimeCheck = datetime.strptime(endTimeStr, "%Y-%m-%d %H:%M:%S")
-        for jsonfile in resourceFile:
-            jsonCreateTime = jsonfile[:-5]
-            jsonCreateTime = jsonCreateTime+' 00:00:00'
-            beginDate = datetime.strptime(jsonCreateTime, "%Y-%m-%d %H:%M:%S")
-            print(beginDate)
-            #print(beginDate)
-            jsonCreateTimeList.append(beginDate)
-        #print(jsonCreateTimeList)
-        # print(type(beginTimeCheck))
-        # print(jsonCreateTimeList)
-        for i in jsonCreateTimeList:
-            print(i)
-
-            if i>beginTimeCheck:
-                print("33333")
-                return "beginTime or endTime is wrong,Please check",400
-
-        #except:
-        return targetName+"/"+serverName+" folder have wrong files,Please check"
-
 
 改路径，改chdir目录，去掉无效注释，creat加e
 
@@ -324,14 +297,6 @@ itertools count(1)
 python中的map reduce
 
 python 3.0.0.0以后, reduce已经不在built-in function里了, 要用它就得from functools import reduce.
-
-collect_dst.json添加k5 target
-model_constructor.conf添加DATA_TEMPLATE和TARGET_NAME
-build_config.py45行添加dataTemplate和targetName
-input_analyser.py 第33行 57-61行
-fiat/__init__128行
-analysis_api170行
-新增了getDataApi()方法和getDataFromJsonApi()方法
 
 python中splitlines()按行分割字符串，返回值是一个列表，如果需要保留换行符，把其中参数设为True即可splitlines(True)
 split()默认按空格分割字符串，返回一个列表
@@ -870,3 +835,122 @@ e
 w
 
 *arg 和 **arg可以不传递参数
+
+python3列表常用操作
+remove() 函数用于移除列表中某个值的第一个匹配项
+>>> a = [3,3,2,2]
+>>> a.remove(3)
+>>> a
+[3, 2, 2]
+
+删除全部列表内指定元素
+while i in list_a:
+    list_a.remove(i)
+即可
+
+根据索引删除元素
+del list_a[index]
+
+>>> a
+[3, 2]
+>>> del a[0]
+>>> a
+[2]
+
+关于可变对象的赋值，浅拷贝和深拷贝
+python中list ,dict为可变对象，int,string,float,tuple为不可变对象
+简单地赋值的话
+list_b = list_a
+修改list_a的同时list_b也会发生改变
+
+使用浅拷贝的话list_b就不会发生改变（在自身内部没有可变情况的情况下）
+使用浅拷贝
+list_b = list_a.copy()或者
+import copy
+list_b = copy.copy(list_a)
+
+若list_a内有可变对象元素的话，若此时这个可变元素对象发生改变，则浅拷贝的list_b
+也会变化，
+此时我们可以采用深拷贝来避免这种情况
+import copy
+list_b = copy.deepcopy(list_a)
+
+python中的编码和解码
+python3中文本总是Unicode,由str类型进行表示，
+二进制数据使用bytes进行表示
+字符串通过编码成为字节码，字节码通过解码成为字符串。
+str类型编码采用encode()方法编码
+str.encode()，可以接受参数表明编码方式
+str.encode('utf-8')
+bytes类型采用decode()方法解码，
+bytes.decode()同样可以接受参数表明解码方式
+bytes.decode('utf-8')
+不加参数的话，默认采用utf-8编码和解码
+官方文档
+https://docs.python.org/3/library/stdtypes.html?highlight=decode#str.encode
+https://docs.python.org/3/library/stdtypes.html?highlight=decode#bytes.decode
+
+python中的'\x'代表后面的字符是十六进制位
+比如'\xaa'就相当于chr(0xaa)
+'\xaa'是一个Unicode字符串
+官方文档：
+https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
+
+pytyon内存管理机制：
+Python GC主要使用引用计数（reference counting）来跟踪和回收垃圾。在引用计数的基础上，通过“标记-清除”（mark and sweep）解决容器对象可能产生的循环引用问题，通过“分代回收”（generation collection）以空间换时间的方法提高垃圾回收效率。
+
+python assert用法
+assert condition, AssertionErrorString
+举例
+assert 2>5, '2 is less than 5'
+执行的话就会打出错误信息'2 is less than 5'
+
+python中的@property
+使用@property可以使我们的函数像属性一样被使用，具体使用方法：
+
+class Grades:
+    @property
+    def score(self):
+        return self.scoreValue
+
+    @score.setter
+    def score(self,value):
+        if not isinstance(value, int):
+            raise ValueError('Input must be a Integer')
+        if value<0 or value>100:
+            raise ValueError('Input must between 1~100')
+        self.scoreValue = value
+
+g = Grades()
+g.score = 7
+print(g.score)
+可以看出，我们可以像使用属性一样来使用函数，不过注意scoreValue不能写成score，除此之外的都可以，
+推荐写成私有变量  _score 的形式，这里为了便于理解只写成了scoreValue
+
+那为什么我们要使用它以及什么时候应该使用它呢
+请看官方解释https://www.programiz.com/python-programming/property的
+译文在这http://python.jobbole.com/81967/
+
+计算斐波那契数列的两种方法，递归和迭代
+def fib_recursion(n):
+    assert n>=0, 'Parameter must be a positive integer'
+    if n <= 1:
+        return n
+    else:
+        return fib_recursion(n-1) + fib_recursion(n-2)
+
+def fib_iteration(n):
+    assert n>0, 'Parameter must be a positive integer'
+    a,b=0,1
+    for i in range(n):
+        a,b =b,a+b
+    return a
+
+
+print(fib_iteration(10))
+print(fib_recursion(10))
+
+
+11:40:29) zhangch-fnst: 修正场所： //modify FIATV2.2 start //modify FIATV2.2 end 差分数据取得： 1.main.html上添加按钮[リソース更新] 2.mainTool.js： Line 944-970: 追加方法resourceUpdate() 3.collect_manager.py: Line 754-763:追加方法updateResourceData() Line 779-788:修正方法:getResourceData() Line 55-76,121-125:修正全删除改为只删除最新的文件 Line 313-355,362-381,401-429：自动取得数据部分修改成只取差分数据 4.index_pages.py: Line 967-1002:追加方法updateresourcedata() 5.msin.css: Line 68-85:追加弹出框式样 6.resource_manager.py: Line 181-207:getResourceLastDay()和updateRecordFile() 追加record.json文件名配置项： 1.model_constructor.conf:RECORD_FILE = record.json 2.build_config.py:Line 49 自动取得时间设定复数： 1.admin_pages.py: Line 181-191,96-100,524-527 2.collect_manager.py: Line 258-267 collect时默认取30天数据 王： relations_creator.py 19-24 导入graphViz库 668 修改genAffectResult的返回结果 679-772 利用graphViz获取点的坐标 maintool.js 110-114 根据点的数量确定点的大小 163-173 给点的信息增加x,y坐标 389-466 增加drawLineChart方法，防止图画好前用户点击 582-590 判断params是不是array的instance ->有两处 691-698 画cpu折线图时小数点精确到一位 ->有两处 750-1120 根据titleName来判断是不是MEM，把MEM的y轴坐标改为MB 1165和1200 增加drawLineChart 1171和1205 改变适用颜色 ->应该是改变通过点click触发后，画折线图后，CPU,DAY按钮变红 main.html 130-133 点击影响范围探索按钮时时禁用影响范围一览表示和影响范围download按钮 ->禁用方法是否会有问题？ 214-222 修改点击右边七个按钮时触发的方法 246 修改展示折线图时只展示一天内的数据 271 增加drawLineChart方法 511-524 根据title是不是MEM来决定y轴单位 612-706 点击影响范围按钮时禁用cpu，mem等按钮 index_pages 55,修改实行为影响范围探索 添加全数据取得按钮: 1.admin_pages.py: Line 107：添加按钮 Line 255-275：对应全数据取得按钮的响应事件 2.collect.html Line 61,76-80:追加全数据取得按钮以及JS方法 3.collect_manager.py Line 174-249:追加collectAllResourceData（）方法，获取全数据 Line 1144-1246:追加collectAllData()方法，用于获取全数据
+(11:45:40) zhangch-fnst: F:\AnalysisLog_SVN\06.20170106\01.フィルタ生成改良\01.SD\フィルタ生成改良_V2.0_詳細仕様書.docx
+(11:45:55) zhangch-fnst: F:\AnalysisLog_SVN\06.20170106\05.障害影響分析ツールV02.1\03.SD\障害影響分析ツールv02_詳細仕様書.docx
