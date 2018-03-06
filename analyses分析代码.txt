@@ -951,6 +951,280 @@ print(fib_iteration(10))
 print(fib_recursion(10))
 
 
-11:40:29) zhangch-fnst: 修正场所： //modify FIATV2.2 start //modify FIATV2.2 end 差分数据取得： 1.main.html上添加按钮[リソース更新] 2.mainTool.js： Line 944-970: 追加方法resourceUpdate() 3.collect_manager.py: Line 754-763:追加方法updateResourceData() Line 779-788:修正方法:getResourceData() Line 55-76,121-125:修正全删除改为只删除最新的文件 Line 313-355,362-381,401-429：自动取得数据部分修改成只取差分数据 4.index_pages.py: Line 967-1002:追加方法updateresourcedata() 5.msin.css: Line 68-85:追加弹出框式样 6.resource_manager.py: Line 181-207:getResourceLastDay()和updateRecordFile() 追加record.json文件名配置项： 1.model_constructor.conf:RECORD_FILE = record.json 2.build_config.py:Line 49 自动取得时间设定复数： 1.admin_pages.py: Line 181-191,96-100,524-527 2.collect_manager.py: Line 258-267 collect时默认取30天数据 王： relations_creator.py 19-24 导入graphViz库 668 修改genAffectResult的返回结果 679-772 利用graphViz获取点的坐标 maintool.js 110-114 根据点的数量确定点的大小 163-173 给点的信息增加x,y坐标 389-466 增加drawLineChart方法，防止图画好前用户点击 582-590 判断params是不是array的instance ->有两处 691-698 画cpu折线图时小数点精确到一位 ->有两处 750-1120 根据titleName来判断是不是MEM，把MEM的y轴坐标改为MB 1165和1200 增加drawLineChart 1171和1205 改变适用颜色 ->应该是改变通过点click触发后，画折线图后，CPU,DAY按钮变红 main.html 130-133 点击影响范围探索按钮时时禁用影响范围一览表示和影响范围download按钮 ->禁用方法是否会有问题？ 214-222 修改点击右边七个按钮时触发的方法 246 修改展示折线图时只展示一天内的数据 271 增加drawLineChart方法 511-524 根据title是不是MEM来决定y轴单位 612-706 点击影响范围按钮时禁用cpu，mem等按钮 index_pages 55,修改实行为影响范围探索 添加全数据取得按钮: 1.admin_pages.py: Line 107：添加按钮 Line 255-275：对应全数据取得按钮的响应事件 2.collect.html Line 61,76-80:追加全数据取得按钮以及JS方法 3.collect_manager.py Line 174-249:追加collectAllResourceData（）方法，获取全数据 Line 1144-1246:追加collectAllData()方法，用于获取全数据
+修正场所： //modify FIATV2.2 start //modify FIATV2.2 end 差分数据取得： 1.main.html上添加按钮[リソース更新] 
+
+2.mainTool.js： Line 944-970: 追加方法resourceUpdate() 
+
+3.collect_manager.py: Line 754-763:追加方法updateResourceData() Line 779-788:修正方法:getResourceData() Line 55-76,121-125:修正全删除改为只删除最新的文件 Line 313-355,362-381,401-429：自动取得数据部分修改成只取差分数据 
+
+4.index_pages.py: Line 967-1002:追加方法updateresourcedata() 
+
+5.msin.css: Line 68-85:追加弹出框式样 
+
+6.resource_manager.py: Line 181-207:getResourceLastDay()和updateRecordFile() 追加record.json文件名配置项： 
+
+1.model_constructor.conf:RECORD_FILE = record.json 
+
+2.build_config.py:Line 49 
+
+自动取得时间设定复数： 
+
+1.admin_pages.py: Line 181-191,96-100,524-527 
+
+2.collect_manager.py: Line 258-267 collect时默认取30天数据 
+
+王： relations_creator.py 19-24 导入graphViz库 668 修改genAffectResult的返回结果 679-772 利用graphViz获取点的坐标 
+
+maintool.js 
+
+110-114 根据点的数量确定点的大小 
+
+163-173 给点的信息增加x,y坐标 
+
+389-466 增加drawLineChart方法，防止图画好前用户点击 
+
+582-590 判断params是不是array的instance ->有两处 
+
+691-698 画cpu折线图时小数点精确到一位 ->有两处 
+
+750-1120 根据titleName来判断是不是MEM，把MEM的y轴坐标改为MB 
+
+1165和1200 增加drawLineChart 
+
+1171和1205 改变适用颜色 ->应该是改变通过点click触发后，画折线图后，CPU,DAY按钮变红 main.html 
+
+130-133 点击影响范围探索按钮时时禁用影响范围一览表示和影响范围download按钮 ->禁用方法是否会有问题？ 
+
+214-222 修改点击右边七个按钮时触发的方法 
+
+246 修改展示折线图时只展示一天内的数据 
+
+271 增加drawLineChart方法 
+
+511-524 根据title是不是MEM来决定y轴单位 
+
+612-706 点击影响范围按钮时禁用cpu，mem等按钮 index_pages 55,修改实行为影响范围探索 添加全数据取得按钮: 
+
+1.admin_pages.py: Line 107：添加按钮 Line 255-275：对应全数据取得按钮的响应事件 
+
+2.collect.html Line 61,76-80:追加全数据取得按钮以及JS方法 
+
+3.collect_manager.py Line 174-249:追加collectAllResourceData（）方法，获取全数据 
+
+Line 1144-1246:追加collectAllData()方法，用于获取全数据
 (11:45:40) zhangch-fnst: F:\AnalysisLog_SVN\06.20170106\01.フィルタ生成改良\01.SD\フィルタ生成改良_V2.0_詳細仕様書.docx
 (11:45:55) zhangch-fnst: F:\AnalysisLog_SVN\06.20170106\05.障害影響分析ツールV02.1\03.SD\障害影響分析ツールv02_詳細仕様書.docx
+
+(15:39) zhangch-fnst: 例えば：
+従来の学習結果に001-0205-0149、001-0625-0840があります。
+新しいの学習を実行する時、incidentsフォルダに001-0625-0840、004-0127-1033があります。
+
+そのため、マージ後output_cases.csvに001-0205-0149、001-0625-0840、004-0127-1033　
+3つQQMがあれば、学習結果が正しくマージされると思います。
+
+(17:40) zhangch-fnst: 0.Bug fix:服务异常中断后lock文件无法删除；node名中包含/时生成的文件有误
+修正场所：
+    __init__.py:Line 21-27
+	collect_manager.py:Line550,564,594,610-611,697-698
+	resource_manager.py:Line 75
+	matrix_keeper.py:Line41,42
+	relations_creator.py:Line 593
+(17:40) zhangch-fnst: img下缺两张图片：glyphicons-halflings.png和glyphicons-halflings-white.png
+(17:40) zhangch-fnst: mainTool.js bug:instanceof
+修正场所：
+    Line 511
+	Line1071-1082
+
+python获取随机数
+import random
+#获取0到1之间的随机小数
+random.random()
+#获取指定范围a到b之间的随机小数
+random.uniform(a,b)
+#获取指定范围a到b之间的随机整数,包含a,b
+random.randint(a,b)
+#随机获取列表里的一个值
+random.choice(list_a)
+
+(17:37) zhangch-fnst: collectUrl = "http://10.25.212.33:8081/v1/getAllOriginJsonFilePath"
+(17:38) zhangch-fnst: requests.get(self.collectUrl, auth=("apiuser", "fnst1234"))
+
+关于本次SD书写收获：
+关于格式：
+1.确定大纲结构，包括章节目录等
+2.按照一定规则来说明，比如可以先说明后端修改内容，然后再说明前端修改内容
+3.对目录及其子目录要有一定的总括说明，包括该目录下修改的概括以及原因
+4.对目录下的各个条目要有一定的说明，包括修改的场合以及具体内容
+5.关于图片的放置位置，应该放置在每个主目录说明之后，标上序号并加以说明
+关于内容：
+1.为方便阅读，各个章节用语应当统一，比如｢データ取得」、「データ収集」等意思相近的应当统一用一个词来说明
+2.各个条目中的详细说明中对于修改代码应以显著颜色标注，为阐明重点内容，无用注释须去掉
+3.为便于理解，对于修改的地方应予以说明，包括修改原因，修改内容，修改后的效果等
+4.为便于日后查阅，对于修改地方的说明，应具体到所在文件下的所在类下的具体方法
+
+字典中验证key是否存在，python2中使用has_key()函数，
+不过在python3.x版本中已不包含has_key(),
+被__contains__(key)替代
+
+region_template_manager.py新增一行
+getDataConf["OpenStackMethods"] = region["OpenStackMethods"]
+region_all.json新增一行"OpenStackMethods":"password",
+
+python rsplit()和split()区别是
+rsplit()从右边开始分割
+split()从左边开始分割
+
+# Writing JSON data 将data写入到data.json文件中
+with open('data.json', 'w') as f:
+    json.dump(data, f)
+# Reading data back 将data.json中数据取出放到data.json里
+with open('data.json', 'r') as f:
+    data = json.load(f)
+python中loads()和load()的区别
+loads()操作的是字符串，将str转化成字典
+load()的操作与文件有关
+dumps()操作的是字典，将字典转化成str
+dump()操作也是与文件有关
+
+linux下强制结束进程
+kill -s 9 11533
+其中11533为进程id
+可以用来模拟意外情况关闭进程
+
+格式化字符串可以使用str.format()
+使用{}来代替%
+方法：
+1.通过 位置
+In [1]: '{0},{1}'.format('kzc',18) 
+Out[1]: 'kzc,18'
+2.通过关键字参数
+In [5]: '{name},{age}'.format(age=18,name='kzc') 
+Out[5]: 'kzc,18'
+
+NGの原因:offline.htmlのisCommitted変数を定義しない,影響範囲図のnodeをクリックする場合、折れ線グラフを表示しない
+
+创建新的元组也可以不使用括号，不过要使用逗号将值分开
+>>> a = 3,6
+>>> type(a)
+<class 'tuple'>
+>>> a
+(3, 6)
+>>>
+
+关于Pycharm中代码无错误同时运行正常却出现unresolved reference错误的原因
+主要是项目根目录路径设置不对
+解决办法：在Pycharm项目视图中右击根目录文件夹
+在菜单中选择 Mark Directory As > Source Root 即可
+
+Python中的内存管理机制
+1.变量，对象，引用，内存缓冲区
+要理解Python中的内存管理机制，首先要对变量，对象，引用，内存缓冲区概念有个大致的理解。
+以a=1为例，其中a是变量，1是对象，a同时是一个引用，指向对象1
+Python中的变量本身是没有类型的，它的类型决定于它所指向的对象的类型，
+此时a=1,a的对象是int,如果接下来执行a=1.5，它的类型就变成float了。
+和C++中的引用不同，Python中的引用可以随时修改指向对象，而C++中
+引用一旦初始化就无法修改了。
+一个对象可以有多个变量指向它，比如再定义b=1,此时b也是对象1的引用
+缓冲区：
+Python在解释器启动的时候会预先分配好一些缓冲区，这些缓冲区的内存地址是固定的（在
+一次程序启动之后），比如一次程序启动后在[-5,256]之间的整数的内存地址是固定的
+
+#第一次启动解释器
+>>> hex(id(1))
+'0x5d9801f0'
+>>> hex(id(2))
+'0x5e04c860'
+
+#第二次启动解释器
+>>> hex(id(1))
+'0x5d98c840'
+>>> hex(id(2))
+'0x5d980210'
+>>> hex(id(300))
+'0x2672ed0'
+>>> hex(id(300000))
+'0x2672ed0'
+>>> hex(id(30000000))
+'0x2672ed0'
+对整数对象内存的存储，主要分为两个区，[-5,256]小整数缓冲区池的整数是程序启动后
+事先分配好的，属于静态分配，变量赋值直接从里面取就行。程序启动一次后，[-5,256]中每个整数对象
+都有自己的内存地址，且在Python程序结束前地址不会发生变化。而[-5,256]之外的整数缓冲池被称为大整数缓冲池，
+这块内存也是分配好的，只是要用的时候再分配内存，比如下面257这个数字，
+虽然给a和b赋了相同的值，但是解释器实际上是先分配了不同的地址，再把这个地址给两个变量。
+>>> a = 1
+>>> b = 1
+>>> hex(id(a))
+'0xe17158'
+>>> hex(id(b))
+'0xe17158'
+>>> b = 257
+>>> a = 257
+>>> hex(id(a))
+'0xe5be00'
+>>> hex(id(b))
+'0xe5bdd0'
+
+2.垃圾回收
+现在的主流语言基本都支持三种最基本的内存分配方式:
+
+A）静态分配，如静态变量、全剧变量，通常这一部分内存不需要释放或者回收；
+
+B）自动分配，通常由语言或者编译器控制，如栈中局部变量、参数传递；
+
+C）动态分配，这部分通常在栈中分配，由用户申请。
+
+垃圾收集机制就是用来处理程序动态分配内存时产生的垃圾
+python垃圾回收以引用计数为主，标记-清除和分代收集为辅。
+我们知道，Python是用C语言写的，底层内存的分配和释放也是通过malloc和free进行的，不过是Python自动决定
+何时分配释放的，不过同时提供接口让用户手动释放，它本身有自己的一套内存管理体系，主要通过两种机制来实现，
+一个是引用计数，一个是垃圾回收。
+前者负责确定当前变量是否需要释放，后者解决前者解决不了的循环引用问题以及提供手动释放的接口。
+
+引用计数：针对可以重复利用的内存缓冲区和内存，python使用了一种引用计数的方式来控制和判断某快内存是否已经没有再被使用。
+即每个对象都有一个计数器count，记住了有多少个变量指向这个对象，当这个对象的引用计数器为0时，
+假如这个对象在缓冲区内，那么它地址空间不会被释放，而是等待下一次被使用，而非缓冲区的该释放就释放。
+这里通过sys包中的getrefcount()来获取当前对象有多少个引用。这里返回的引用个数分别是2和3，
+比预计的1和2多了一个，这是因为传递参数给getrefcount的时候产生了一个临时引用[1]。
+>>> a = []
+>>> getrefcount(a)
+2
+>>> b = a
+>>> getrefcount(a)
+3
+
+引用计数最大缺陷就是循环引用的问题。什么是循环引用？A和B相互引用而再没有外部引用A与B中的任何一个，它们的引用计数虽然都为1，但显然应该被回收，例子：
+
+a = { } # a 的引用为 1
+b = { } # b 的引用为 1
+a['b'] = b # b 的引用增 1，b的引用为2
+b['a'] = a # a 的引用增 1，a的引用为 2
+del a # a 的引用减 1，a的引用为 1
+del b # b 的引用减 1, b的引用为 1
+在这个例子中,del语句减少了 a 和 b 的引用计数并删除了用于引用的变量名，
+可是由于两个对象各包含一个对方对象的引用，虽然最后两个对象都无法通过名字访问了，
+但引用计数并没有减少到零。因此这个对象不会被销毁，它会一直驻留在内存中，
+这就造成了内存泄漏。为了解决循环引用问题，Python引入了标记-清除和分代回收两种GC机制。
+
+#https://github.com/Hipponensis/Notes/blob/master/%E5%85%B3%E4%BA%8EPython%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.md
+#https://chenrudan.github.io/blog/2016/04/23/pythonmemorycontrol.html
+
+linux下源码安装django
+源码安装方法
+下载源码包：https://www.djangoproject.com/download/
+
+输入以下命令并安装：
+
+tar xzvf Django-X.Y.tar.gz    # 解压下载包
+cd Django-X.Y                 # 进入 Django 目录
+python setup.py install       # 执行安装命令
+
+
+github上下载源码解压后
+python setup.py install
+
+linux上解压zip文件到saveDir文件夹
+unzip file.zip -d saveDir
+
+
+#https://stackoverflow.com/questions/18546299/setting-up-django-with-uwsgi-and-nginx
+uwsgi --http :8000 --module mysite.wsgi
