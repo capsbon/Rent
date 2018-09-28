@@ -1,5 +1,5 @@
+
 @set /p dotfile=Please input dot file name:
-@set /p outfile=Please input result file name:
-dot -Tpng %dotfile%.dot -o %outfile%.png
+dot -Tpng %dotfile% -o %dotfile:~0,-4%.png
 
 cmd
